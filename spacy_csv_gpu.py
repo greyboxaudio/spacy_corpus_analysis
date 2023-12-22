@@ -36,6 +36,6 @@ with open('output/output.csv', 'w', newline='', encoding="utf-8") as csvfile:
                 dataWriter.writerow(row)
                 headsItem2[i] = token.head.lemma
 headsItem1Sorted = cp.unique(headsItem1,True,True,True)
-headsItem2Sorted = cp.unique(headsItem2,False,False,True)
+headsItem2Sorted = cp.unique(headsItem2,True,True,True)
 print(headsItem1Sorted)
 print(headsItem2Sorted)
