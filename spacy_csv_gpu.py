@@ -11,11 +11,11 @@ pd.set_option('display.max_colwidth', None)
 import cupy as cp
 headsItem1 = cp.zeros(shape=(5000),dtype=cp.uint64)
 headsItem2 = cp.zeros(shape=(5000),dtype=cp.uint64)
-with open('output.csv', 'w', newline='', encoding="utf-8") as csvfile:
+with open('output/output.csv', 'w', newline='', encoding="utf-8") as csvfile:
     dataWriter = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
     header = ["token","token.tag_","token.head.lemma_","token.head.tag_","source"]
     dataWriter.writerow(header)
-    df = pd.read_csv(csvInput1, encoding="utf-8")
+    df = pd.read_csv("input/" + csvInput1, encoding="utf-8")
     rows=df.shape[0]
     for i in range(0, rows, 1):
         s = df.iat[i,5]
@@ -25,7 +25,7 @@ with open('output.csv', 'w', newline='', encoding="utf-8") as csvfile:
                 row = [token.lemma_,token.tag_,token.head.lemma_,token.head.tag_,s]
                 dataWriter.writerow(row)
                 headsItem1[i] = token.head.lemma
-    df = pd.read_csv(csvInput2, encoding="utf-8")
+    df = pd.read_csv("input/" + csvInput2, encoding="utf-8")
     rows=df.shape[0]
     for i in range(0, rows, 1):
         s = df.iat[i,5]
